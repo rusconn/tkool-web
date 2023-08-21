@@ -1,0 +1,11 @@
+{
+  "fmt": {
+    // prettierを使う
+    "exclude": ["**/*.md"],
+    "lineWidth": 100
+  },
+  "imports": {
+    "/": "./",
+    "./": "./"
+  }
+}

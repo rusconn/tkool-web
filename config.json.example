@@ -1,0 +1,22 @@
+{
+  "prompt": "ゲームを選んでね",
+  "browser": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "gamesRoot": "/path/to/directory/containing/following/games",
+  "games": [
+    {
+      "name": "ゲーム1",
+      "www": "game1/www",
+      "port": 5001
+    },
+    {
+      "name": "ゲーム2",
+      "www": "game2/www",
+      "port": 5002
+    },
+    {
+      "name": "ゲーム3",
+      "www": "game3/www",
+      "port": 5003
+    }
+  ]
+}

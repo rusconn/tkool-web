@@ -1,0 +1,46 @@
+#!/usr/bin/env deno run --allow-env --allow-net --allow-read --allow-run
+
+import { select } from "npm:@inquirer/prompts";
+import { serveDir } from "https://deno.land/std@0.198.0/http/file_server.ts";
+import { dirname } from "https://deno.land/std@0.198.0/path/mod.ts";
+import config from "./config.json" assert { type: "json" };
+
+try {
+  // 任意の場所から実行可能にする
+  const url = new URL(import.meta.url);
+  Deno.chdir(dirname(url.pathname));
+
+  const { prompt, browser, gamesRoot, games } = config;
+
+  const { www, port } = await select({
+    message: prompt,
+    pageSize: 10,
+    choices: games.map(({ name, www, port }) => ({
+      name,
+      value: { www, port },
+    })),
+  });
+
+  // ブラウザ起動
+  new Deno.Command(browser, {
+    args: [`http://127.0.0.1:${port}`],
+  }).spawn();
+
+  // サーバー起動
+  Deno.serve(
+    { port },
+    (req) =>
+      serveDir(req, {
+        fsRoot: `${gamesRoot}/${www}`,
+        headers: ["Cache-Control: max-age=31536000, immutable"],
+      }),
+  );
+
+  // Ctrl-C で正常終了
+  Deno.addSignalListener("SIGINT", () => {
+    Deno.exit(0);
+  });
+} catch (e) {
+  console.error(e);
+  Deno.exit(1);
+}

@@ -1,0 +1,15 @@
+{
+  "deno.enable": true,
+  "editor.formatOnSave": true,
+  "files.associations": {
+    "config.json.example": "json",
+    "tkoolweb": "typescript"
+  },
+  "markdown-preview-enhanced.previewTheme": "github-dark.css",
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  }
+}

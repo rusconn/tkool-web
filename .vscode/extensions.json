@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "bierner.github-markdown-preview",
+    "davidanson.vscode-markdownlint",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "denoland.vscode-deno"
+  ]
+}
